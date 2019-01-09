@@ -1,0 +1,25 @@
+cpu: 256
+memory: 256
+
+task_definition:
+  api:
+    repo: guslington
+    image: demo-api
+    tag_param: ApiTag
+    ports:
+      - 7000
+
+targetgroup:
+  name: api
+  container: api
+  port: 7000
+  protocol: http
+  listener: http
+  healthcheck:
+    path: /healthcheck
+    code: 200
+  rules:
+    - host: api.*
+      priority: 100
+  tags:
+      Name: api

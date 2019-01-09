@@ -1,0 +1,5 @@
+maximum_availability_zones: 3
+
+config_export:
+  global:
+    - maximum_availability_zones

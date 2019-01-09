@@ -1,0 +1,27 @@
+cpu: 256
+memory: 256
+
+health_check_grace_period: 0
+
+task_definition:
+  web:
+    repo: guslington
+    image: demo-web
+    tag_param: WebTag
+    ports:
+      - 8000
+
+targetgroup:
+  name: web
+  container: web
+  port: 8000
+  protocol: http
+  listener: http
+  healthcheck:
+    path: /
+    code: 200
+  rules:
+    - host: www.*
+      priority: 200
+  tags:
+      Name: web
